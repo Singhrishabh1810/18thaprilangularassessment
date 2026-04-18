@@ -1,0 +1,24 @@
+<section class="col-12 p-2 m-2 bg-warning">
+  <h2>All Products</h2>
+  <table class="table table-bordered table-striped mt-2">
+    <thead class="table-dark">
+      <tr>
+        <th>Product ID</th>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of products">
+        <td>{{ p.pid }}</td>
+        <td>{{ p.pname | titlecase }}</td>
+        <td>{{ p.price | currency:'INR':'symbol':'1.2-2':'en-IN' }}</td>
+        <td>
+          <button class="btn btn-danger btn-sm" (click)="onDelete(p.pid)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="products.length === 0" class="alert alert-warning">No products available.</div>
+</section>

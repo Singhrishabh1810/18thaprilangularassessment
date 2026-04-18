@@ -1,0 +1,40 @@
+<section class="col-12 p-2 m-2 bg-warning">
+  <h2>Search Product</h2>
+
+  <div class="row mb-3">
+    <div class="col-md-5">
+      <label class="form-label fw-bold">Search by Name</label>
+      <input type="text" class="form-control" [(ngModel)]="searchName" placeholder="Enter product name" />
+    </div>
+    <div class="col-md-5">
+      <label class="form-label fw-bold">Search by Category</label>
+      <input type="text" class="form-control" [(ngModel)]="searchCategory" placeholder="Enter category keyword" />
+    </div>
+    <div class="col-md-2 d-flex align-items-end">
+      <button class="btn btn-primary w-100" (click)="onSearch()">Search</button>
+    </div>
+  </div>
+
+  <div *ngIf="searched">
+    <div *ngIf="results.length === 0" class="alert alert-danger">No products found.</div>
+
+    <table *ngIf="results.length > 0" class="table table-bordered table-striped mt-2">
+      <thead class="table-dark">
+        <tr>
+          <th>Product ID</th>
+          <th>Product Name</th>
+          <th>Category</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of results">
+          <td>{{ p.pid }}</td>
+          <td>{{ p.pname | titlecase }}</td>
+          <td>{{ p.category | titlecase }}</td>
+          <td>{{ p.price | currency:'INR':'symbol':'1.2-2':'en-IN' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
